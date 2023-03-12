@@ -479,6 +479,7 @@ class ImagePainterState extends State<ImagePainter> {
       height: widget.height ?? double.maxFinite,
       width: widget.width ?? double.maxFinite,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (widget.controlsAtTop) _buildControls(),
           Expanded(

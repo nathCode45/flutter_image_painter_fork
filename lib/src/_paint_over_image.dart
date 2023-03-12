@@ -751,7 +751,7 @@ class ImagePainterState extends State<ImagePainter> {
 
   void _openTextDialog() {
     _controller.setMode(PaintMode.text);
-    final fontSize = 6 * _controller.strokeWidth;
+    final fontSize = 3 * _controller.strokeWidth;
 
     TextDialog.show(
       context,

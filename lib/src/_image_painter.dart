@@ -101,7 +101,7 @@ class DrawImage extends CustomPainter {
             text: item.text,
             style: TextStyle(
                 color: _painter!.color,
-                fontSize: 8, //3 * _painter.strokeWidth,
+                fontSize: 3 * _painter.strokeWidth,
                 fontWeight: FontWeight.bold),
           );
           final textPainter = TextPainter(

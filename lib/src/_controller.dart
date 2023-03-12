@@ -48,7 +48,7 @@ class Controller extends ChangeNotifier {
   Controller({
     double strokeWidth = 4.0,
     Color color = Colors.red,
-    PaintingStyle style = PaintingStyle.stroke, //TODO this was changed from . stroke to .fill
+    PaintingStyle style = PaintingStyle.fill, //TODO this was changed from . stroke to .fill
     PaintMode mode = PaintMode.freeStyle,
     String text = '',
   }) {

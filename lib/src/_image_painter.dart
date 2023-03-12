@@ -35,7 +35,7 @@ class DrawImage extends CustomPainter {
       canvas.drawRect(
           Rect.fromPoints(const Offset(0, 0), Offset(size.width, size.height)),
           Paint()
-            ..style = PaintingStyle.fill
+            ..style = PaintingStyle.stroke
             ..color = backgroundColor!);
     } else {
       ///paints [ui.Image] on the canvas for reference to draw over it.
@@ -50,7 +50,7 @@ class DrawImage extends CustomPainter {
       );
     }
 
-    ///paints all the previoud paintInfo history recorded on [PaintHistory]
+    ///paints all the previous paintInfo history recorded on [PaintHistory]
     for (var item in _controller.paintHistory) {
       final _offset = item.offset;
       final _painter = item.paint;
@@ -86,7 +86,9 @@ class DrawImage extends CustomPainter {
               final _path = Path()
                 ..moveTo(_offset[i]!.dx, _offset[i]!.dy)
                 ..lineTo(_offset[i + 1]!.dx, _offset[i + 1]!.dy);
-              canvas.drawPath(_path, _painter!..strokeCap = StrokeCap.round);
+              canvas.drawPath(_path, _painter!
+                ..strokeCap = StrokeCap.round
+                ..style=PaintingStyle.stroke);
             } else if (_offset[i] != null && _offset[i + 1] == null) {
               canvas.drawPoints(PointMode.points, [_offset[i]!],
                   _painter!..strokeCap = StrokeCap.round);
@@ -188,23 +190,23 @@ class DrawImage extends CustomPainter {
 
   ///Draws dashed path.
   ///It depends on [strokeWidth] for space to line proportion.
-  Path _dashPath(Path path, double width) {
-    final dashPath = Path();
-    final dashWidth = 10.0 * width / 5;
-    final dashSpace = 10.0 * width / 5;
-    var distance = 0.0;
-    for (final pathMetric in path.computeMetrics()) {
-      while (distance < pathMetric.length) {
-        dashPath.addPath(
-          pathMetric.extractPath(distance, distance + dashWidth),
-          Offset.zero,
-        );
-        distance += dashWidth;
-        distance += dashSpace;
-      }
-    }
-    return dashPath;
-  }
+  // Path _dashPath(Path path, double width) {
+  //   final dashPath = Path();
+  //   final dashWidth = 10.0 * width / 5;
+  //   final dashSpace = 10.0 * width / 5;
+  //   var distance = 0.0;
+  //   for (final pathMetric in path.computeMetrics()) {
+  //     while (distance < pathMetric.length) {
+  //       dashPath.addPath(
+  //         pathMetric.extractPath(distance, distance + dashWidth),
+  //         Offset.zero,
+  //       );
+  //       distance += dashWidth;
+  //       distance += dashSpace;
+  //     }
+  //   }
+  //   return dashPath;
+  // }
 
   @override
   bool shouldRepaint(DrawImage oldInfo) {

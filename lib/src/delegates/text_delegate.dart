@@ -1,5 +1,5 @@
 class TextDelegate {
-  final String noneZoom = "None / Zoom";
+  final String noneZoom = "None";
   final String line = "Line";
   final String rectangle = "Rectangle";
   final String drawing = "Drawing";

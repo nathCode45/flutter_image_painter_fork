@@ -482,7 +482,7 @@ class ImagePainterState extends State<ImagePainter> {
         mainAxisSize: MainAxisSize.min,
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          if (widget.controlsAtTop) Expanded(child: _buildControls()),
+          if (widget.controlsAtTop) _buildControls(),
           Expanded(
             child: FittedBox(
               alignment: FractionalOffset.center,

@@ -74,12 +74,12 @@ class DrawImage extends CustomPainter {
         case PaintMode.arrow:
           drawArrow(canvas, _offset![0]!, _offset[1]!, _painter!);
           break;
-        case PaintMode.dashLine:
-          final path = Path()
-            ..moveTo(_offset![0]!.dx, _offset[0]!.dy)
-            ..lineTo(_offset[1]!.dx, _offset[1]!.dy);
-          canvas.drawPath(_dashPath(path, _painter!.strokeWidth), _painter);
-          break;
+        // case PaintMode.dashLine:
+        //   final path = Path()
+        //     ..moveTo(_offset![0]!.dx, _offset[0]!.dy)
+        //     ..lineTo(_offset[1]!.dx, _offset[1]!.dy);
+        //   canvas.drawPath(_dashPath(path, _painter!.strokeWidth), _painter);
+        //   break;
         case PaintMode.freeStyle:
           for (var i = 0; i < _offset!.length - 1; i++) {
             if (_offset[i] != null && _offset[i + 1] != null) {
@@ -139,12 +139,12 @@ class DrawImage extends CustomPainter {
         case PaintMode.arrow:
           drawArrow(canvas, _start!, _end!, _paint);
           break;
-        case PaintMode.dashLine:
-          final path = Path()
-            ..moveTo(_start!.dx, _start.dy)
-            ..lineTo(_end!.dx, _end.dy);
-          canvas.drawPath(_dashPath(path, _paint.strokeWidth), _paint);
-          break;
+        // case PaintMode.dashLine:
+        //   final path = Path()
+        //     ..moveTo(_start!.dx, _start.dy)
+        //     ..lineTo(_end!.dx, _end.dy);
+        //   canvas.drawPath(_dashPath(path, _paint.strokeWidth), _paint);
+        //   break;
         case PaintMode.freeStyle:
           final points = _controller.offsets;
           for (var i = 0; i < _controller.offsets.length - 1; i++) {
@@ -236,8 +236,8 @@ enum PaintMode {
   ///Allows to draw circle from a point.
   circle,
 
-  ///Allows to draw dashed line between two point.
-  dashLine
+  // ///Allows to draw dashed line between two point.
+  // dashLine
 }
 
 ///[PaintInfo] keeps track of a single unit of shape, whichever selected.

@@ -21,7 +21,7 @@ class Controller extends ChangeNotifier {
   Paint get brush => Paint()
     ..color = _color
     ..strokeWidth = _strokeWidth * _strokeMultiplier
-    ..style = _mode == PaintMode.dashLine ? PaintingStyle.stroke : _style;
+    ..style =  _style;
 
   PaintMode get mode => _mode;
 
@@ -48,7 +48,7 @@ class Controller extends ChangeNotifier {
   Controller({
     double strokeWidth = 4.0,
     Color color = Colors.red,
-    PaintingStyle style = PaintingStyle.stroke,
+    PaintingStyle style = PaintingStyle.fill, //TODO this was changed from . stroke to .fill
     PaintMode mode = PaintMode.freeStyle,
     String text = '',
   }) {

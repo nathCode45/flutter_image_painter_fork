@@ -64,10 +64,6 @@ List<ModeData> paintModes(TextDelegate textDelegate) => [
           mode: PaintMode.arrow,
           label: textDelegate.arrow),
       ModeData(
-          icon: Icons.power_input,
-          mode: PaintMode.dashLine,
-          label: textDelegate.dashLine),
-      ModeData(
           icon: Icons.text_format,
           mode: PaintMode.text,
           label: textDelegate.text),

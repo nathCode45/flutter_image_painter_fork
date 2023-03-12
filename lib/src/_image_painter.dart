@@ -81,17 +81,18 @@ class DrawImage extends CustomPainter {
         //   canvas.drawPath(_dashPath(path, _painter!.strokeWidth), _painter);
         //   break;
         case PaintMode.freeStyle:
+          final _freeStylePainter = Paint()
+            ..strokeCap = StrokeCap.round
+            ..style = PaintingStyle.stroke;
           for (var i = 0; i < _offset!.length - 1; i++) {
             if (_offset[i] != null && _offset[i + 1] != null) {
               final _path = Path()
                 ..moveTo(_offset[i]!.dx, _offset[i]!.dy)
                 ..lineTo(_offset[i + 1]!.dx, _offset[i + 1]!.dy);
-              canvas.drawPath(_path, _painter!
-                ..strokeCap = StrokeCap.round
-                ..style=PaintingStyle.stroke);
+              canvas.drawPath(_path, _freeStylePainter;
             } else if (_offset[i] != null && _offset[i + 1] == null) {
               canvas.drawPoints(PointMode.points, [_offset[i]!],
-                  _painter!..strokeCap = StrokeCap.round);
+                  _freeStylePainter!..strokeCap = StrokeCap.round);
             }
           }
           break;

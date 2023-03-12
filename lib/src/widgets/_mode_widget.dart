@@ -64,7 +64,7 @@ List<ModeData> paintModes(TextDelegate textDelegate) => [
           mode: PaintMode.arrow,
           label: textDelegate.arrow),
       ModeData(
-          icon: Icons.text_format,
+          icon: Icons.abc,//Icons.text_format,
           mode: PaintMode.text,
           label: textDelegate.text),
     ];

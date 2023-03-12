@@ -81,7 +81,7 @@ class DrawImage extends CustomPainter {
         //   canvas.drawPath(_dashPath(path, _painter!.strokeWidth), _painter);
         //   break;
         case PaintMode.freeStyle:
-          final _freeStylePainter = Paint()
+          final _freeStylePainter = _painter!
             ..strokeCap = StrokeCap.round
             ..style = PaintingStyle.stroke;
           for (var i = 0; i < _offset!.length - 1; i++) {
@@ -89,7 +89,7 @@ class DrawImage extends CustomPainter {
               final _path = Path()
                 ..moveTo(_offset[i]!.dx, _offset[i]!.dy)
                 ..lineTo(_offset[i + 1]!.dx, _offset[i + 1]!.dy);
-              canvas.drawPath(_path, _freeStylePainter;
+              canvas.drawPath(_path, _freeStylePainter);
             } else if (_offset[i] != null && _offset[i + 1] == null) {
               canvas.drawPoints(PointMode.points, [_offset[i]!],
                   _freeStylePainter!..strokeCap = StrokeCap.round);
@@ -149,13 +149,17 @@ class DrawImage extends CustomPainter {
         //   canvas.drawPath(_dashPath(path, _paint.strokeWidth), _paint);
         //   break;
         case PaintMode.freeStyle:
+          final _freeStylePainter = _paint
+            ..strokeCap = StrokeCap.round
+            ..style = PaintingStyle.stroke;
           final points = _controller.offsets;
           for (var i = 0; i < _controller.offsets.length - 1; i++) {
             if (points[i] != null && points[i + 1] != null) {
               canvas.drawLine(
                   Offset(points[i]!.dx, points[i]!.dy),
                   Offset(points[i + 1]!.dx, points[i + 1]!.dy),
-                  _paint..strokeCap = StrokeCap.round);
+                  _freeStylePainter
+              );
             } else if (points[i] != null && points[i + 1] == null) {
               canvas.drawPoints(PointMode.points,
                   [Offset(points[i]!.dx, points[i]!.dy)], _paint);
@@ -188,6 +192,8 @@ class DrawImage extends CustomPainter {
     canvas.drawPath(path, arrowPainter);
     canvas.restore();
   }
+
+
 
   ///Draws dashed path.
   ///It depends on [strokeWidth] for space to line proportion.

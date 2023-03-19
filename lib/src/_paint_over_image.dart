@@ -484,7 +484,7 @@ class ImagePainterState extends State<ImagePainter> {
           if (widget.controlsAtTop) _buildControls(),
           Expanded(
             child: SizedBox(
-              width: MediaQuery.of(context).size.width,
+              width: 400,
               child: FittedBox(
                // fit: BoxFit.fill,
                 alignment: FractionalOffset.center,
@@ -494,7 +494,7 @@ class ImagePainterState extends State<ImagePainter> {
                     builder: (context, child) {
                       return InteractiveViewer(
                         transformationController: _transformationController,
-                        //maxScale: 2.4,
+                        maxScale: 2.4,
                         minScale: 1,
                         panEnabled: _controller.mode == PaintMode.none,
                         scaleEnabled: widget.isScalable!,

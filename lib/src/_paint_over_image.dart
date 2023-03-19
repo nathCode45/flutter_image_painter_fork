@@ -484,7 +484,7 @@ class ImagePainterState extends State<ImagePainter> {
           if (widget.controlsAtTop) _buildControls(),
           Expanded(
             child: SizedBox(
-              width: 100,
+              width: 1000,
               child: FittedBox(
                // fit: BoxFit.fill,
                 alignment: FractionalOffset.center,

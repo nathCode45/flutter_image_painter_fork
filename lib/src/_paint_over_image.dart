@@ -475,16 +475,16 @@ class ImagePainterState extends State<ImagePainter> {
 
   ///paints image on given constrains for drawing if image is not null.
   Widget _paintImage() {
-    return FittedBox(
-      fit: BoxFit.fill,
-      // height: widget.height ?? double.maxFinite,
-      // width: double.maxFinite,//widget.width ?? double.maxFinite,
+    return Container(
+      height: widget.height ?? double.maxFinite,
+      width: double.maxFinite,//widget.width ?? double.maxFinite,
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           if (widget.controlsAtTop) _buildControls(),
           Expanded(
             child: FittedBox(
+              fit: BoxFit.fill,
               alignment: FractionalOffset.center,
               child: ClipRect(
                 child: AnimatedBuilder(

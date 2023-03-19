@@ -484,33 +484,31 @@ class ImagePainterState extends State<ImagePainter> {
           //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             if (widget.controlsAtTop) _buildControls(),
-            Expanded(
-              child: FittedBox(
-                alignment: FractionalOffset.center,
-                child: ClipRect(
-                  child: AnimatedBuilder(
-                    animation: _controller,
-                    builder: (context, child) {
-                      return InteractiveViewer(
-                        transformationController: _transformationController,
-                        maxScale: 2.4,
-                        minScale: 1,
-                        panEnabled: _controller.mode == PaintMode.none,
-                        scaleEnabled: widget.isScalable!,
-                        onInteractionUpdate: _scaleUpdateGesture,
-                        onInteractionEnd: _scaleEndGesture,
-                        child: CustomPaint(
-                          size: imageSize,
-                          willChange: true,
-                          isComplex: true,
-                          painter: DrawImage(
-                            image: _image,
-                            controller: _controller,
-                          ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: ClipRect(
+                child: AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return InteractiveViewer(
+                      transformationController: _transformationController,
+                      maxScale: 2.4,
+                      minScale: 1,
+                      panEnabled: _controller.mode == PaintMode.none,
+                      scaleEnabled: widget.isScalable!,
+                      onInteractionUpdate: _scaleUpdateGesture,
+                      onInteractionEnd: _scaleEndGesture,
+                      child: CustomPaint(
+                        size: imageSize,
+                        willChange: true,
+                        isComplex: true,
+                        painter: DrawImage(
+                          image: _image,
+                          controller: _controller,
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

@@ -481,10 +481,7 @@ class ImagePainterState extends State<ImagePainter> {
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          if (widget.controlsAtTop) Expanded(
-            flex: 1,
-              child: _buildControls()
-          ),
+          if (widget.controlsAtTop) _buildControls(),
           Expanded(
             flex: 4,
             child: AnimatedBuilder(

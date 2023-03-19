@@ -483,32 +483,35 @@ class ImagePainterState extends State<ImagePainter> {
         children: [
           if (widget.controlsAtTop) _buildControls(),
           Expanded(
-            child: FittedBox(
-             // fit: BoxFit.fill,
-              alignment: FractionalOffset.center,
-              child: ClipRect(
-                child: AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, child) {
-                    return InteractiveViewer(
-                      transformationController: _transformationController,
-                      maxScale: 2.4,
-                      minScale: 1,
-                      panEnabled: _controller.mode == PaintMode.none,
-                      scaleEnabled: widget.isScalable!,
-                      onInteractionUpdate: _scaleUpdateGesture,
-                      onInteractionEnd: _scaleEndGesture,
-                      child: CustomPaint(
-                        size: imageSize,
-                        willChange: true,
-                        isComplex: true,
-                        painter: DrawImage(
-                          image: _image,
-                          controller: _controller,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: FittedBox(
+               // fit: BoxFit.fill,
+                alignment: FractionalOffset.center,
+                child: ClipRect(
+                  child: AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return InteractiveViewer(
+                        transformationController: _transformationController,
+                        maxScale: 2.4,
+                        minScale: 1,
+                        panEnabled: _controller.mode == PaintMode.none,
+                        scaleEnabled: widget.isScalable!,
+                        onInteractionUpdate: _scaleUpdateGesture,
+                        onInteractionEnd: _scaleEndGesture,
+                        child: CustomPaint(
+                          size: imageSize,
+                          willChange: true,
+                          isComplex: true,
+                          painter: DrawImage(
+                            image: _image,
+                            controller: _controller,
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

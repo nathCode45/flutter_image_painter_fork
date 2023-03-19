@@ -481,7 +481,7 @@ class ImagePainterState extends State<ImagePainter> {
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          if (widget.controlsAtTop) _buildControls(),
+          if (widget.controlsAtTop) Expanded(child: _buildControls()),
           Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width,

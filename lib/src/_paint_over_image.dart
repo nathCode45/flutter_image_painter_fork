@@ -498,13 +498,16 @@ class ImagePainterState extends State<ImagePainter> {
                   scaleEnabled: widget.isScalable!,
                   onInteractionUpdate: _scaleUpdateGesture,
                   onInteractionEnd: _scaleEndGesture,
-                  child: CustomPaint(
-                    size: imageSize,
-                    willChange: true,
-                    isComplex: true,
-                    painter: DrawImage(
-                      image: _image,
-                      controller: _controller,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: CustomPaint(
+                      size: imageSize,
+                      willChange: true,
+                      isComplex: true,
+                      painter: DrawImage(
+                        image: _image,
+                        controller: _controller,
+                      ),
                     ),
                   ),
                 );

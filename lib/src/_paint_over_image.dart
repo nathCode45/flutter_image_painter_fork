@@ -513,7 +513,7 @@ class ImagePainterState extends State<ImagePainter> {
             ),
           ),
           if (!widget.controlsAtTop) _buildControls(),
-          //SizedBox(height: MediaQuery.of(context).padding.bottom)
+          SizedBox(height: MediaQuery.of(context).padding.bottom)
         ],
       ),
     );

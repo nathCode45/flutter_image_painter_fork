@@ -477,7 +477,7 @@ class ImagePainterState extends State<ImagePainter> {
   Widget _paintImage() {
     return Container(
       height: widget.height ?? double.maxFinite,
-      width: widget.width ?? double.maxFinite,
+      width: double.maxFinite,//widget.width ?? double.maxFinite,
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

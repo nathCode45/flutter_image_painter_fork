@@ -478,8 +478,8 @@ class ImagePainterState extends State<ImagePainter> {
     return Container(
       color: Colors.black,
       //decoration: Paint(),
-      // height: widget.height ?? double.maxFinite,
-      // width: widget.width ?? double.maxFinite,
+      height: widget.height ?? double.maxFinite,
+      width: widget.width ?? double.maxFinite,
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

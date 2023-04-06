@@ -344,7 +344,7 @@ class ImagePainterState extends State<ImagePainter> {
   late final TextEditingController _textController;
   late final TransformationController _transformationController;
 
-  List<bool> _selectedModes = <bool>[false, true];
+  List<bool> _selectedModes = <bool>[false, true, false];
 
 
   int _strokeMultiplier = 1;
@@ -799,7 +799,8 @@ class ImagePainterState extends State<ImagePainter> {
               borderRadius: const BorderRadius.all(Radius.circular(12)),
               children: [
                 const Icon(Icons.back_hand_outlined),
-                const Icon(Icons.edit)
+                const Icon(Icons.edit),
+                const Icon(Icons.rectangle_rounded)
               ],
               isSelected: _selectedModes,
               onPressed: (int index){

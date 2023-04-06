@@ -48,13 +48,14 @@ List<ModeData> paintModes(TextDelegate textDelegate) => [
         mode: PaintMode.freeStyle,
         label: textDelegate.drawing),
       ModeData(
-          icon: Icons.horizontal_rule,
-          mode: PaintMode.line,
-          label: textDelegate.line),
-      ModeData(
           icon: Icons.rectangle_rounded,
           mode: PaintMode.rect,
           label: textDelegate.rectangle),
+      ModeData(
+          icon: Icons.horizontal_rule,
+          mode: PaintMode.line,
+          label: textDelegate.line),
+
       ModeData(
           icon: Icons.circle,
           mode: PaintMode.circle,

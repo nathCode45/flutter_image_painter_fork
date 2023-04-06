@@ -847,7 +847,17 @@ class ImagePainterState extends State<ImagePainter> {
               isSelected: _selectedModes,
               onPressed: (int index){
                 setState(() {
-                  _selectedModes[index] = !_selectedModes[index];
+                  ///flip flop the buttons to match
+                  for(int i = 0; i<_selectedModes.length; i++){
+                    if(i==index){
+                      _selectedModes[i] = true;
+                    }else{
+                      _selectedModes[i] = false;
+                    }
+                  }
+
+
+                  ///update the paint mode
                   if (widget.onPaintModeChanged != null &&
                       paintModes(textDelegate)[index].mode != null) {
                     widget.onPaintModeChanged!(paintModes(textDelegate)[index].mode!);

@@ -792,6 +792,7 @@ class ImagePainterState extends State<ImagePainter> {
       color: Colors.grey[200],
       child: Row(
         children: [
+          const SizedBox(width: 8,),
           ToggleButtons(
             borderRadius: const BorderRadius.all(Radius.circular(12)),
             children: [

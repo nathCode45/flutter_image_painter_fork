@@ -836,6 +836,14 @@ class ImagePainterState extends State<ImagePainter> {
                 widget.brushIcon ?? Icon(Icons.brush, color: Colors.grey[700]),
             itemBuilder: (_) => [_showRangeSlider()],
           ),
+          IconButton(onPressed: (){
+            ///paintModes(textDelegate)[0].mode; refers to the paint mode for zoom and pan
+            if (widget.onPaintModeChanged != null &&
+                paintModes(textDelegate)[0].mode != null) {
+              widget.onPaintModeChanged!(paintModes(textDelegate)[0].mode!);
+            }
+            _controller.setMode(paintModes(textDelegate)[0].mode!);
+          }, icon: Icon(Icons.back_hand_outlined)),
           IconButton(
               icon: const Icon(Icons.text_fields_rounded), onPressed: _openTextDialog),
           const Spacer(),

@@ -792,22 +792,52 @@ class ImagePainterState extends State<ImagePainter> {
       color: Colors.grey[200],
       child: Row(
         children: [
-          AnimatedBuilder(
-            animation: _controller,
-            builder: (_, __) {
-              final icon = paintModes(textDelegate)
-                  .firstWhere((item) => item.mode == _controller.mode)
-                  .icon;
-              return PopupMenuButton(
-                tooltip: textDelegate.changeMode,
-                shape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                icon: Icon(icon, color: Colors.grey[700]),
-                itemBuilder: (_) => [_showOptionsRow()],
-              );
+          ToggleButtons(
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
+            children: [
+              const Icon(Icons.back_hand_outlined),
+              const Icon(Icons.edit)
+            ],
+            isSelected: _selectedModes,
+            onPressed: (int index){
+              setState(() {
+                ///flip flop the buttons to match
+                for(int i = 0; i<_selectedModes.length; i++){
+                  if(i==index){
+                    _selectedModes[i] = true;
+                  }else{
+                    _selectedModes[i] = false;
+                  }
+                }
+
+
+                ///update the paint mode
+                if (widget.onPaintModeChanged != null &&
+                    paintModes(textDelegate)[index].mode != null) {
+                  widget.onPaintModeChanged!(paintModes(textDelegate)[index].mode!);
+                }
+                _controller.setMode(paintModes(textDelegate)[index].mode!);
+
+              });
             },
           ),
+          ///the following is the options row for all paint modes which is no longer used cuz i only want finger draw and zoom
+          // AnimatedBuilder(
+          //   animation: _controller,
+          //   builder: (_, __) {
+          //     final icon = paintModes(textDelegate)
+          //         .firstWhere((item) => item.mode == _controller.mode)
+          //         .icon;
+          //     return PopupMenuButton(
+          //       tooltip: textDelegate.changeMode,
+          //       shape: ContinuousRectangleBorder(
+          //         borderRadius: BorderRadius.circular(40),
+          //       ),
+          //       icon: Icon(icon, color: Colors.grey[700]),
+          //       itemBuilder: (_) => [_showOptionsRow()],
+          //     );
+          //   },
+          // ),
           AnimatedBuilder(
             animation: _controller,
             builder: (_, __) {
@@ -839,44 +869,8 @@ class ImagePainterState extends State<ImagePainter> {
                 widget.brushIcon ?? Icon(Icons.brush, color: Colors.grey[700]),
             itemBuilder: (_) => [_showRangeSlider()],
           ),
-          ToggleButtons(
-              children: [
-                Icon(Icons.back_hand_outlined),
-                Icon(Icons.edit)
-              ],
-              isSelected: _selectedModes,
-              onPressed: (int index){
-                setState(() {
-                  ///flip flop the buttons to match
-                  for(int i = 0; i<_selectedModes.length; i++){
-                    if(i==index){
-                      _selectedModes[i] = true;
-                    }else{
-                      _selectedModes[i] = false;
-                    }
-                  }
-
-
-                  ///update the paint mode
-                  if (widget.onPaintModeChanged != null &&
-                      paintModes(textDelegate)[index].mode != null) {
-                    widget.onPaintModeChanged!(paintModes(textDelegate)[index].mode!);
-                  }
-                  _controller.setMode(paintModes(textDelegate)[index].mode!);
-
-                });
-              },
-          ),
-          // IconButton(onPressed: (){
-          //   ///paintModes(textDelegate)[0].mode; refers to the paint mode for zoom and pan
-          //   if (widget.onPaintModeChanged != null &&
-          //       paintModes(textDelegate)[0].mode != null) {
-          //     widget.onPaintModeChanged!(paintModes(textDelegate)[0].mode!);
-          //   }
-          //   _controller.setMode(paintModes(textDelegate)[0].mode!);
-          // }, icon: Icon(Icons.back_hand_outlined)),
-          IconButton(
-              icon: const Icon(Icons.text_fields_rounded), onPressed: _openTextDialog),
+          // IconButton(
+          //     icon: const Icon(Icons.text_fields_rounded), onPressed: _openTextDialog),
           const Spacer(),
           IconButton(
             tooltip: textDelegate.undo,

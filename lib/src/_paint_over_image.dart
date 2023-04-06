@@ -496,7 +496,7 @@ class ImagePainterState extends State<ImagePainter> {
                   builder: (context, child) {
                     return InteractiveViewer(
                       transformationController: _transformationController,
-                      maxScale: 3.4,
+                      maxScale: 4.4,
                       minScale: 1,
                       panEnabled: _controller.mode == PaintMode.none,
                       scaleEnabled: widget.isScalable!,
@@ -793,34 +793,37 @@ class ImagePainterState extends State<ImagePainter> {
       child: Row(
         children: [
           const SizedBox(width: 8,),
-          ToggleButtons(
-            borderRadius: const BorderRadius.all(Radius.circular(12)),
-            children: [
-              const Icon(Icons.back_hand_outlined),
-              const Icon(Icons.edit)
-            ],
-            isSelected: _selectedModes,
-            onPressed: (int index){
-              setState(() {
-                ///flip flop the buttons to match
-                for(int i = 0; i<_selectedModes.length; i++){
-                  if(i==index){
-                    _selectedModes[i] = true;
-                  }else{
-                    _selectedModes[i] = false;
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ToggleButtons(
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
+              children: [
+                const Icon(Icons.back_hand_outlined),
+                const Icon(Icons.edit)
+              ],
+              isSelected: _selectedModes,
+              onPressed: (int index){
+                setState(() {
+                  ///flip flop the buttons to match
+                  for(int i = 0; i<_selectedModes.length; i++){
+                    if(i==index){
+                      _selectedModes[i] = true;
+                    }else{
+                      _selectedModes[i] = false;
+                    }
                   }
-                }
 
 
-                ///update the paint mode
-                if (widget.onPaintModeChanged != null &&
-                    paintModes(textDelegate)[index].mode != null) {
-                  widget.onPaintModeChanged!(paintModes(textDelegate)[index].mode!);
-                }
-                _controller.setMode(paintModes(textDelegate)[index].mode!);
+                  ///update the paint mode
+                  if (widget.onPaintModeChanged != null &&
+                      paintModes(textDelegate)[index].mode != null) {
+                    widget.onPaintModeChanged!(paintModes(textDelegate)[index].mode!);
+                  }
+                  _controller.setMode(paintModes(textDelegate)[index].mode!);
 
-              });
-            },
+                });
+              },
+            ),
           ),
           ///the following is the options row for all paint modes which is no longer used cuz i only want finger draw and zoom
           // AnimatedBuilder(

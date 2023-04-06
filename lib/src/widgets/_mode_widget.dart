@@ -44,6 +44,10 @@ List<ModeData> paintModes(TextDelegate textDelegate) => [
           mode: PaintMode.none,
           label: textDelegate.noneZoom),
       ModeData(
+        icon: Icons.edit,
+        mode: PaintMode.freeStyle,
+        label: textDelegate.drawing),
+      ModeData(
           icon: Icons.horizontal_rule,
           mode: PaintMode.line,
           label: textDelegate.line),
@@ -51,10 +55,6 @@ List<ModeData> paintModes(TextDelegate textDelegate) => [
           icon: Icons.rectangle_rounded,
           mode: PaintMode.rect,
           label: textDelegate.rectangle),
-      ModeData(
-          icon: Icons.edit,
-          mode: PaintMode.freeStyle,
-          label: textDelegate.drawing),
       ModeData(
           icon: Icons.circle,
           mode: PaintMode.circle,

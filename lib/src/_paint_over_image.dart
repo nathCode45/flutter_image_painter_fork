@@ -344,6 +344,9 @@ class ImagePainterState extends State<ImagePainter> {
   late final TextEditingController _textController;
   late final TransformationController _transformationController;
 
+  List<bool> _selectedModes = <bool>[false, true];
+
+
   int _strokeMultiplier = 1;
   late TextDelegate textDelegate;
   @override
@@ -836,14 +839,32 @@ class ImagePainterState extends State<ImagePainter> {
                 widget.brushIcon ?? Icon(Icons.brush, color: Colors.grey[700]),
             itemBuilder: (_) => [_showRangeSlider()],
           ),
-          IconButton(onPressed: (){
-            ///paintModes(textDelegate)[0].mode; refers to the paint mode for zoom and pan
-            if (widget.onPaintModeChanged != null &&
-                paintModes(textDelegate)[0].mode != null) {
-              widget.onPaintModeChanged!(paintModes(textDelegate)[0].mode!);
-            }
-            _controller.setMode(paintModes(textDelegate)[0].mode!);
-          }, icon: Icon(Icons.back_hand_outlined)),
+          ToggleButtons(
+              children: [
+                Icon(Icons.back_hand_outlined),
+                Icon(Icons.edit)
+              ],
+              isSelected: _selectedModes,
+              onPressed: (int index){
+                setState(() {
+                  _selectedModes[index] = !_selectedModes[index];
+                  if (widget.onPaintModeChanged != null &&
+                      paintModes(textDelegate)[index].mode != null) {
+                    widget.onPaintModeChanged!(paintModes(textDelegate)[index].mode!);
+                  }
+                  _controller.setMode(paintModes(textDelegate)[index].mode!);
+
+                });
+              },
+          ),
+          // IconButton(onPressed: (){
+          //   ///paintModes(textDelegate)[0].mode; refers to the paint mode for zoom and pan
+          //   if (widget.onPaintModeChanged != null &&
+          //       paintModes(textDelegate)[0].mode != null) {
+          //     widget.onPaintModeChanged!(paintModes(textDelegate)[0].mode!);
+          //   }
+          //   _controller.setMode(paintModes(textDelegate)[0].mode!);
+          // }, icon: Icon(Icons.back_hand_outlined)),
           IconButton(
               icon: const Icon(Icons.text_fields_rounded), onPressed: _openTextDialog),
           const Spacer(),

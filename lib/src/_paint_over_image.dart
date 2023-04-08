@@ -346,6 +346,10 @@ class ImagePainter extends StatefulWidget {
 
   @override
   ImagePainterState createState() => ImagePainterState();
+
+  void clearAll(){
+
+  }
 }
 
 ///
@@ -368,6 +372,7 @@ class ImagePainterState extends State<ImagePainter> {
 
     _isLoaded = ValueNotifier<bool>(false);
     _controller = Controller();
+    _controller.clear();
 
     if (widget.onEdit!=null) {
       _controller.addListener(()=>widget.onEdit!());

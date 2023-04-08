@@ -364,7 +364,7 @@ class ImagePainterState extends State<ImagePainter> {
     _controller = Controller();
 
     if (widget.onEdit!=null) {
-      _controller.addListener((){widget.onEdit!(); print("called!!");});
+      _controller.addListener(()=>widget.onEdit!());
     }
 
     if (widget.isSignature) {

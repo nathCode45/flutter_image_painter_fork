@@ -46,6 +46,7 @@ class ImagePainter extends StatefulWidget {
     this.onPaintModeChanged,
     this.textDelegate,
     this.onEdit,
+    this.clearedID
   }) : super(key: key);
 
   ///Constructor for loading image from network url.
@@ -115,6 +116,7 @@ class ImagePainter extends StatefulWidget {
     ValueChanged<double>? onStrokeWidthChanged,
     TextDelegate? textDelegate,
     bool? controlsAtTop,
+    int? clearedID
   }) {
     return ImagePainter._(
       onEdit: onEdit,
@@ -137,6 +139,7 @@ class ImagePainter extends StatefulWidget {
       onStrokeWidthChanged: onStrokeWidthChanged,
       textDelegate: textDelegate,
       controlsAtTop: controlsAtTop ?? true,
+      clearedID: clearedID
     );
   }
 
@@ -322,6 +325,9 @@ class ImagePainter extends StatefulWidget {
 
   ///Listener for controller edits
   final Function? onEdit;
+
+  ///id to differentiate new painters in factory
+  final int? clearedID;
 
   //the initial stroke width
   final double? initialStrokeWidth;

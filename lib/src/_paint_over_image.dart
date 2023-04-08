@@ -19,6 +19,7 @@ export '_image_painter.dart';
 ///[ImagePainter] widget.
 @immutable
 class ImagePainter extends StatefulWidget {
+
   const ImagePainter._({
     Key? key,
     this.assetPath,
@@ -44,6 +45,7 @@ class ImagePainter extends StatefulWidget {
     this.onStrokeWidthChanged,
     this.onPaintModeChanged,
     this.textDelegate,
+    this.onEdit,
   }) : super(key: key);
 
   ///Constructor for loading image from network url.
@@ -98,6 +100,7 @@ class ImagePainter extends StatefulWidget {
     double? height,
     double? width,
     bool? scalable,
+    Function? onEdit,
     Widget? placeholderWidget,
     List<Color>? colors,
     Widget? brushIcon,
@@ -114,6 +117,7 @@ class ImagePainter extends StatefulWidget {
     bool? controlsAtTop,
   }) {
     return ImagePainter._(
+      onEdit: onEdit,
       key: key,
       assetPath: path,
       height: height,
@@ -316,6 +320,9 @@ class ImagePainter extends StatefulWidget {
   ///Initial PaintMode.
   final PaintMode? initialPaintMode;
 
+  ///Listener for controller edits
+  final Function? onEdit;
+
   //the initial stroke width
   final double? initialStrokeWidth;
 
@@ -352,8 +359,12 @@ class ImagePainterState extends State<ImagePainter> {
   @override
   void initState() {
     super.initState();
+
     _isLoaded = ValueNotifier<bool>(false);
     _controller = Controller();
+
+    _controller.addListener(()=>widget.onEdit!);
+
     if (widget.isSignature) {
       _controller.update(
         mode: PaintMode.freeStyle,

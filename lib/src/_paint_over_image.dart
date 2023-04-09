@@ -372,7 +372,6 @@ class ImagePainterState extends State<ImagePainter> {
 
     _isLoaded = ValueNotifier<bool>(false);
     _controller = Controller();
-    _controller.clear();
 
     if (widget.onEdit!=null) {
       _controller.addListener(()=>widget.onEdit!());
@@ -520,6 +519,7 @@ class ImagePainterState extends State<ImagePainter> {
                   builder: (context, child) {
                     return InteractiveViewer(
                       transformationController: _transformationController,
+                      clipBehavior: Clip.none,
                       maxScale: 4.4,
                       minScale: 1,
                       panEnabled: _controller.mode == PaintMode.none,
